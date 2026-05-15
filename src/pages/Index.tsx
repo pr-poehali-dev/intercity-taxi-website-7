@@ -206,8 +206,18 @@ export default function Index() {
           transition: "opacity 0.8s ease",
         }}
       >
+        {/* ── TOP BANNER ── */}
+        <div className="fixed top-0 left-0 right-0 z-[51] bg-yellow-400 py-2 px-4 text-center">
+          <p className="font-oswald font-bold text-[#0B0F1A] text-sm md:text-base tracking-wide uppercase">
+            Закажите междугороднее такси —{" "}
+            <a href="tel:89278978722" className="underline underline-offset-2 hover:opacity-80 transition-opacity">
+              +7 (927) 897-87-22
+            </a>
+          </p>
+        </div>
+
         {/* ── NAV ── */}
-        <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-8 py-3 bg-[#0B0F1A]/90 backdrop-blur-md border-b border-white/5">
+        <nav className="fixed top-[36px] md:top-[40px] left-0 right-0 z-50 flex items-center justify-between px-4 md:px-8 py-3 bg-[#0B0F1A]/90 backdrop-blur-md border-b border-white/5">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl overflow-hidden border border-yellow-400/30">
               <img src={LOGO_IMG} alt="Поехали" className="w-full h-full object-cover" />
@@ -263,7 +273,7 @@ export default function Index() {
             ))}
           </div>
 
-          <div className="relative z-10 w-full px-4 md:px-6 pt-24 pb-10">
+          <div className="relative z-10 w-full px-4 md:px-6 pt-32 pb-10">
             <div className="max-w-xl mx-auto md:mx-0">
               <div
                 className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/25 text-yellow-400 text-xs font-medium px-3 py-1.5 rounded-full mb-5 uppercase tracking-widest"
