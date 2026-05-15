@@ -181,9 +181,7 @@ export default function Index() {
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const [form, setForm] = useState({ from: "", to: "", name: "", phone: "" });
-  const [contactForm, setContactForm] = useState({ name: "", phone: "", message: "" });
   const [sent, setSent] = useState(false);
-  const [contactSent, setContactSent] = useState(false);
 
   const featuresSection = useInView();
   const routesSection = useInView();
@@ -196,7 +194,6 @@ export default function Index() {
   };
 
   const handleOrder = (e: React.FormEvent) => { e.preventDefault(); setSent(true); };
-  const handleContact = (e: React.FormEvent) => { e.preventDefault(); setContactSent(true); };
 
   return (
     <>
@@ -246,7 +243,7 @@ export default function Index() {
             className="absolute inset-0 bg-cover bg-center scale-105"
             style={{ backgroundImage: `url(${HERO_IMG})` }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F1A] via-[#0B0F1A]/85 to-[#0B0F1A]/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F1A] via-[#0B0F1A]/90 to-[#0B0F1A]/60" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-transparent to-transparent" />
 
           {/* animated road lines */}
@@ -266,27 +263,27 @@ export default function Index() {
             ))}
           </div>
 
-          <div className="relative z-10 container mx-auto px-6 pt-28 pb-16">
-            <div className="max-w-2xl">
+          <div className="relative z-10 w-full px-4 md:px-6 pt-24 pb-10">
+            <div className="max-w-xl mx-auto md:mx-0">
               <div
-                className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/25 text-yellow-400 text-xs font-medium px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest"
+                className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/25 text-yellow-400 text-xs font-medium px-3 py-1.5 rounded-full mb-5 uppercase tracking-widest"
                 style={{ animation: "fade-up 0.5s ease-out forwards", opacity: 0 }}
               >
                 <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" />
-                Работаем с 2018 года · По всей России
+                С 2018 года · По всей России
               </div>
 
               <h1
-                className="font-oswald uppercase leading-tight mb-5"
-                style={{ animation: "fade-up 0.6s 0.1s ease-out forwards", opacity: 0, fontSize: "clamp(2.8rem, 7vw, 5.5rem)", fontWeight: 700 }}
+                className="font-oswald uppercase leading-tight mb-4"
+                style={{ animation: "fade-up 0.6s 0.1s ease-out forwards", opacity: 0, fontSize: "clamp(2.4rem, 8vw, 5rem)", fontWeight: 700 }}
               >
                 Такси<br />
                 <span className="text-yellow-400">Поехали</span><br />
-                <span className="text-3xl md:text-4xl font-semibold text-slate-300">в другой город</span>
+                <span style={{ fontSize: "clamp(1.4rem, 5vw, 2.5rem)" }} className="font-semibold text-slate-300">в другой город</span>
               </h1>
 
               <p
-                className="text-slate-400 text-base md:text-lg leading-relaxed mb-8 max-w-lg"
+                className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 max-w-md"
                 style={{ animation: "fade-up 0.6s 0.2s ease-out forwards", opacity: 0 }}
               >
                 Межгородские перевозки по всей России и новым территориям. Удобно, безопасно, по фиксированной цене.
@@ -294,40 +291,38 @@ export default function Index() {
 
               {/* ORDER FORM */}
               <div
-                className="bg-[#131929]/95 backdrop-blur-sm border border-white/8 rounded-2xl p-5 md:p-6"
+                className="bg-[#131929]/98 backdrop-blur-sm border border-white/8 rounded-2xl p-4 md:p-6"
                 style={{ animation: "fade-up 0.6s 0.3s ease-out forwards", opacity: 0 }}
               >
-                <p className="font-oswald text-lg font-semibold tracking-wide text-white mb-4 uppercase">Рассчитать поездку</p>
+                <p className="font-oswald text-base font-semibold tracking-wide text-white mb-4 uppercase">Рассчитать поездку</p>
                 {!sent ? (
                   <form onSubmit={handleOrder} className="space-y-3">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      <div className="relative">
-                        <Icon name="MapPin" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
-                        <input type="text" placeholder="Откуда (город)" required
-                          className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-3 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
-                          value={form.from} onChange={e => setForm({ ...form, from: e.target.value })} />
-                      </div>
-                      <div className="relative">
-                        <Icon name="Navigation" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
-                        <input type="text" placeholder="Куда (город)" required
-                          className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-3 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
-                          value={form.to} onChange={e => setForm({ ...form, to: e.target.value })} />
-                      </div>
-                      <div className="relative">
-                        <Icon name="User" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
-                        <input type="text" placeholder="Ваше имя" required
-                          className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-3 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
-                          value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
-                      </div>
-                      <div className="relative">
-                        <Icon name="Phone" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
-                        <input type="tel" placeholder="Телефон" required
-                          className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-3 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
-                          value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} />
-                      </div>
+                    <div className="relative">
+                      <Icon name="MapPin" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
+                      <input type="text" placeholder="Откуда (город)" required
+                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
+                        value={form.from} onChange={e => setForm({ ...form, from: e.target.value })} />
+                    </div>
+                    <div className="relative">
+                      <Icon name="Navigation" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
+                      <input type="text" placeholder="Куда (город)" required
+                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
+                        value={form.to} onChange={e => setForm({ ...form, to: e.target.value })} />
+                    </div>
+                    <div className="relative">
+                      <Icon name="User" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
+                      <input type="text" placeholder="Ваше имя" required
+                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
+                        value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
+                    </div>
+                    <div className="relative">
+                      <Icon name="Phone" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
+                      <input type="tel" placeholder="Телефон" required
+                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
+                        value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} />
                     </div>
                     <button type="submit"
-                      className="w-full bg-yellow-400 text-[#0B0F1A] font-oswald font-bold text-base py-3.5 rounded-xl hover:bg-yellow-300 active:scale-[0.98] transition-all tracking-wide uppercase">
+                      className="w-full bg-yellow-400 text-[#0B0F1A] font-oswald font-bold text-base py-4 rounded-xl hover:bg-yellow-300 active:scale-[0.98] transition-all tracking-wide uppercase">
                       Узнать стоимость →
                     </button>
                   </form>
@@ -344,17 +339,16 @@ export default function Index() {
 
               {/* quick contact */}
               <div
-                className="flex flex-wrap gap-3 mt-4"
+                className="flex flex-wrap gap-4 mt-4"
                 style={{ animation: "fade-up 0.6s 0.4s ease-out forwards", opacity: 0 }}
               >
                 <a href={`tel:${PHONE}`}
                   className="flex items-center gap-2 text-yellow-400 font-medium text-sm hover:text-yellow-300 transition-colors">
-                  <Icon name="Phone" size={15} /> {PHONE_DISPLAY}
+                  <Icon name="Phone" size={14} /> {PHONE_DISPLAY}
                 </a>
-                <span className="text-white/20">·</span>
                 <a href={TG_URL} target="_blank" rel="noopener noreferrer"
                   className="flex items-center gap-2 text-[#2AABEE] text-sm hover:text-blue-300 transition-colors">
-                  <Icon name="Send" size={15} /> {TG}
+                  <Icon name="Send" size={14} /> {TG}
                 </a>
               </div>
             </div>
@@ -362,13 +356,13 @@ export default function Index() {
         </section>
 
         {/* ── FEATURES ── */}
-        <section ref={featuresSection.ref} className="py-20 bg-[#0B0F1A]">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-12">
+        <section ref={featuresSection.ref} className="py-14 md:py-20 bg-[#0B0F1A]">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center mb-10">
               <p className="text-yellow-400 font-oswald text-xs tracking-widest uppercase mb-2">Почему выбирают нас</p>
-              <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase text-white">Наши преимущества</h2>
+              <h2 className="font-oswald text-3xl md:text-5xl font-bold uppercase text-white">Наши преимущества</h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
               {features.map((f, i) => (
                 <div
                   key={f.label}
@@ -389,7 +383,7 @@ export default function Index() {
             </div>
 
             {/* stats */}
-            <div className="mt-14 grid grid-cols-3 gap-6 pt-12 border-t border-white/5">
+            <div className="mt-10 grid grid-cols-3 gap-4 pt-10 border-t border-white/5">
               {[
                 { num: "8 лет", label: "на рынке с 2018 года" },
                 { num: "15 000+", label: "поездок выполнено" },
@@ -403,8 +397,8 @@ export default function Index() {
                     transition: `opacity 0.6s ease ${0.5 + i * 0.1}s`,
                   }}
                 >
-                  <div className="font-oswald text-4xl md:text-5xl font-bold text-yellow-400">{s.num}</div>
-                  <div className="text-slate-500 mt-1 text-sm">{s.label}</div>
+                  <div className="font-oswald text-2xl md:text-5xl font-bold text-yellow-400">{s.num}</div>
+                  <div className="text-slate-500 mt-1 text-xs md:text-sm">{s.label}</div>
                 </div>
               ))}
             </div>
@@ -412,9 +406,9 @@ export default function Index() {
         </section>
 
         {/* ── ROUTES ── */}
-        <section ref={routesSection.ref} className="py-16 bg-[#0D1220]">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-10">
+        <section ref={routesSection.ref} className="py-12 md:py-16 bg-[#0D1220]">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="text-center mb-8">
               <p className="text-yellow-400 font-oswald text-xs tracking-widest uppercase mb-2">Маршруты</p>
               <h2 className="font-oswald text-3xl md:text-4xl font-bold uppercase text-white">Популярные направления</h2>
             </div>
@@ -441,9 +435,9 @@ export default function Index() {
         </section>
 
         {/* ── REVIEWS ── */}
-        <section ref={reviewsSection.ref} className="py-20 bg-[#0B0F1A]">
-          <div className="container mx-auto px-6">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <section ref={reviewsSection.ref} className="py-14 md:py-20 bg-[#0B0F1A]">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
               <div>
                 <p className="text-yellow-400 font-oswald text-xs tracking-widest uppercase mb-2">Отзывы</p>
                 <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase text-white">Нам доверяют</h2>
@@ -457,7 +451,7 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {reviews.map((r, i) => (
                 <div
                   key={r.name}
@@ -489,115 +483,90 @@ export default function Index() {
         </section>
 
         {/* ── CONTACTS ── */}
-        <section ref={contactSection.ref} className="py-20 bg-[#0D1220]">
-          <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-              <div
-                style={{
-                  opacity: contactSection.inView ? 1 : 0,
-                  transform: contactSection.inView ? "translateX(0)" : "translateX(-30px)",
-                  transition: "all 0.6s ease",
-                }}
-              >
+        <section ref={contactSection.ref} className="py-16 bg-[#0D1220]">
+          <div className="container mx-auto px-4 md:px-6">
+            <div
+              style={{
+                opacity: contactSection.inView ? 1 : 0,
+                transform: contactSection.inView ? "translateY(0)" : "translateY(25px)",
+                transition: "all 0.6s ease",
+              }}
+            >
+              <div className="text-center mb-10">
                 <p className="text-yellow-400 font-oswald text-xs tracking-widest uppercase mb-2">Связаться</p>
-                <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase text-white mb-8">Контакты</h2>
+                <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase text-white">Контакты</h2>
+              </div>
 
-                <div className="space-y-4">
-                  <a href={`tel:${PHONE}`}
-                    className="flex items-center gap-4 p-4 bg-[#131929] rounded-2xl border border-white/5 hover:border-yellow-400/30 group transition-all">
-                    <div className="w-12 h-12 bg-yellow-400 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                      <Icon name="Phone" size={22} className="text-[#0B0F1A]" />
-                    </div>
-                    <div>
-                      <p className="text-slate-500 text-xs">Телефон</p>
-                      <p className="font-oswald font-semibold text-xl text-white">{PHONE_DISPLAY}</p>
-                    </div>
-                  </a>
-
-                  <a href={TG_URL} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 bg-[#131929] rounded-2xl border border-white/5 hover:border-[#2AABEE]/30 group transition-all">
-                    <div className="w-12 h-12 bg-[#2AABEE] rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                      <Icon name="Send" size={22} className="text-white" />
-                    </div>
-                    <div>
-                      <p className="text-slate-500 text-xs">Telegram</p>
-                      <p className="font-oswald font-semibold text-xl text-white">{TG}</p>
-                    </div>
-                  </a>
-
-                  <div className="flex items-center gap-4 p-4 bg-[#131929] rounded-2xl border border-white/5">
-                    <div className="w-12 h-12 bg-yellow-400/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Icon name="Globe" size={22} className="text-yellow-400" />
-                    </div>
-                    <div>
-                      <p className="text-slate-500 text-xs">География</p>
-                      <p className="font-oswald font-semibold text-lg text-white">Вся Россия + Новые территории</p>
-                    </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                <a href={`tel:${PHONE}`}
+                  className="flex items-center gap-4 p-5 bg-[#131929] rounded-2xl border border-white/5 hover:border-yellow-400/30 active:scale-[0.98] group transition-all">
+                  <div className="w-14 h-14 bg-yellow-400 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <Icon name="Phone" size={26} className="text-[#0B0F1A]" />
                   </div>
+                  <div>
+                    <p className="text-slate-500 text-xs mb-0.5">Позвонить</p>
+                    <p className="font-oswald font-semibold text-lg text-white leading-tight">{PHONE_DISPLAY}</p>
+                    <p className="text-slate-500 text-xs mt-0.5">Круглосуточно</p>
+                  </div>
+                </a>
 
-                  <div className="flex items-center gap-4 p-4 bg-[#131929] rounded-2xl border border-white/5">
-                    <div className="w-12 h-12 bg-yellow-400/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Icon name="Clock" size={22} className="text-yellow-400" />
-                    </div>
-                    <div>
-                      <p className="text-slate-500 text-xs">Режим работы</p>
-                      <p className="font-oswald font-semibold text-lg text-white">Круглосуточно, 24/7, 365 дней</p>
-                    </div>
+                <a href={TG_URL} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-5 bg-[#131929] rounded-2xl border border-white/5 hover:border-[#2AABEE]/30 active:scale-[0.98] group transition-all">
+                  <div className="w-14 h-14 bg-[#2AABEE] rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                    <Icon name="Send" size={26} className="text-white" />
+                  </div>
+                  <div>
+                    <p className="text-slate-500 text-xs mb-0.5">Написать</p>
+                    <p className="font-oswald font-semibold text-lg text-white leading-tight">{TG}</p>
+                    <p className="text-slate-500 text-xs mt-0.5">Telegram</p>
+                  </div>
+                </a>
+
+                <div className="flex items-center gap-4 p-5 bg-[#131929] rounded-2xl border border-white/5 sm:col-span-2">
+                  <div className="w-14 h-14 bg-yellow-400/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Icon name="Clock" size={26} className="text-yellow-400" />
+                  </div>
+                  <div>
+                    <p className="text-slate-500 text-xs mb-0.5">Режим работы</p>
+                    <p className="font-oswald font-semibold text-lg text-white">Круглосуточно, без выходных</p>
+                    <p className="text-slate-500 text-xs mt-0.5">Вся Россия + Новые территории</p>
                   </div>
                 </div>
               </div>
 
-              {/* form */}
-              <div
-                className="bg-[#131929] rounded-2xl p-6 md:p-8 border border-white/5"
-                style={{
-                  opacity: contactSection.inView ? 1 : 0,
-                  transform: contactSection.inView ? "translateX(0)" : "translateX(30px)",
-                  transition: "all 0.6s ease 0.15s",
-                }}
-              >
-                <h3 className="font-oswald text-2xl font-semibold text-white mb-6 tracking-wide uppercase">Обратная связь</h3>
-                {!contactSent ? (
-                  <form onSubmit={handleContact} className="space-y-4">
-                    <div className="relative">
-                      <Icon name="User" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
-                      <input type="text" placeholder="Ваше имя" required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
-                        value={contactForm.name} onChange={e => setContactForm({ ...contactForm, name: e.target.value })} />
-                    </div>
-                    <div className="relative">
-                      <Icon name="Phone" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
-                      <input type="tel" placeholder="Телефон" required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
-                        value={contactForm.phone} onChange={e => setContactForm({ ...contactForm, phone: e.target.value })} />
-                    </div>
-                    <div className="relative">
-                      <Icon name="MessageSquare" size={15} className="absolute left-3 top-3.5 text-yellow-400" />
-                      <textarea placeholder="Откуда и куда едете, дата, количество пассажиров..." rows={4} required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm resize-none transition-colors"
-                        value={contactForm.message} onChange={e => setContactForm({ ...contactForm, message: e.target.value })} />
-                    </div>
-                    <button type="submit"
-                      className="w-full bg-yellow-400 text-[#0B0F1A] font-oswald font-bold text-base py-4 rounded-xl hover:bg-yellow-300 active:scale-[0.98] transition-all tracking-wide uppercase">
-                      Отправить заявку →
-                    </button>
-                  </form>
-                ) : (
-                  <div className="text-center py-10">
-                    <div className="w-16 h-16 bg-yellow-400/15 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Icon name="CheckCircle" size={32} className="text-yellow-400" />
-                    </div>
-                    <p className="font-oswald text-xl font-semibold text-white">Заявка отправлена!</p>
-                    <p className="text-slate-400 mt-2 text-sm">Свяжемся с вами в ближайшее время</p>
-                  </div>
-                )}
+              {/* big CTA buttons mobile-friendly */}
+              <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mt-6">
+                <a href={`tel:${PHONE}`}
+                  className="flex-1 flex items-center justify-center gap-3 bg-yellow-400 text-[#0B0F1A] font-oswald font-bold text-lg py-4 rounded-2xl hover:bg-yellow-300 active:scale-[0.98] transition-all tracking-wide uppercase">
+                  <Icon name="Phone" size={20} />
+                  Позвонить сейчас
+                </a>
+                <a href={TG_URL} target="_blank" rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-3 bg-[#2AABEE] text-white font-oswald font-bold text-lg py-4 rounded-2xl hover:bg-blue-400 active:scale-[0.98] transition-all tracking-wide uppercase">
+                  <Icon name="Send" size={20} />
+                  Написать в Telegram
+                </a>
               </div>
             </div>
           </div>
         </section>
 
+        {/* ── FLOATING CALL BUTTON (mobile) ── */}
+        <div className="fixed bottom-5 left-4 right-4 z-40 flex gap-3 md:hidden">
+          <a href={`tel:${PHONE}`}
+            className="flex-1 flex items-center justify-center gap-2 bg-yellow-400 text-[#0B0F1A] font-oswald font-bold text-base py-4 rounded-2xl shadow-lg shadow-yellow-400/20 active:scale-95 transition-all">
+            <Icon name="Phone" size={20} />
+            Позвонить
+          </a>
+          <a href={TG_URL} target="_blank" rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 bg-[#2AABEE] text-white font-oswald font-bold text-base py-4 rounded-2xl shadow-lg shadow-blue-400/20 active:scale-95 transition-all">
+            <Icon name="Send" size={20} />
+            Telegram
+          </a>
+        </div>
+
         {/* ── FOOTER ── */}
-        <footer className="border-t border-white/5 py-8 bg-[#0B0F1A]">
+        <footer className="border-t border-white/5 py-8 pb-28 md:pb-8 bg-[#0B0F1A]">
           <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
             <div className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-lg overflow-hidden">
