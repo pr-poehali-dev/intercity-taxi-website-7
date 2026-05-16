@@ -7,6 +7,8 @@ const PHONE = "89278978722";
 const PHONE_DISPLAY = "+7 (927) 897-87-22";
 const TG = "@transferorg18";
 const TG_URL = "https://t.me/transferorg18";
+const MAX_URL = "https://max.ru/u/f9LHodD0cOJRttLGXmrsjygaiyV3x1j_lfFDYl57If4t7FEbbsMKkVmh68E";
+const MAX_LOGO = "https://cdn.poehali.dev/projects/8ba4584c-06d3-4070-96f9-cbe91b2e44b2/bucket/5690f815-4254-4066-89c1-aab6e13ce23a.png";
 
 const reviews = [
   {
@@ -529,6 +531,18 @@ export default function Index() {
                   </div>
                 </a>
 
+                <a href={MAX_URL} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-5 bg-[#131929] rounded-2xl border border-white/5 hover:border-purple-500/30 active:scale-[0.98] group transition-all">
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
+                    <img src={MAX_LOGO} alt="Макс" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <p className="text-slate-500 text-xs mb-0.5">Написать</p>
+                    <p className="font-oswald font-semibold text-lg text-white leading-tight">Макс</p>
+                    <p className="text-slate-500 text-xs mt-0.5">Мессенджер Макс</p>
+                  </div>
+                </a>
+
                 <div className="flex items-center gap-4 p-5 bg-[#131929] rounded-2xl border border-white/5 sm:col-span-2">
                   <div className="w-14 h-14 bg-yellow-400/10 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Icon name="Clock" size={26} className="text-yellow-400" />
@@ -551,7 +565,12 @@ export default function Index() {
                 <a href={TG_URL} target="_blank" rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-3 bg-[#2AABEE] text-white font-oswald font-bold text-lg py-4 rounded-2xl hover:bg-blue-400 active:scale-[0.98] transition-all tracking-wide uppercase">
                   <Icon name="Send" size={20} />
-                  Написать в Telegram
+                  Telegram
+                </a>
+                <a href={MAX_URL} target="_blank" rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-3 bg-white/10 text-white font-oswald font-bold text-lg py-4 rounded-2xl hover:bg-white/15 active:scale-[0.98] transition-all tracking-wide uppercase border border-white/10">
+                  <img src={MAX_LOGO} alt="Макс" className="w-6 h-6 rounded-md" />
+                  Макс
                 </a>
               </div>
             </div>
@@ -587,6 +606,10 @@ export default function Index() {
             <div className="flex items-center gap-4">
               <a href={`tel:${PHONE}`} className="text-yellow-400 hover:text-yellow-300 font-oswald font-semibold transition-colors">{PHONE_DISPLAY}</a>
               <a href={TG_URL} target="_blank" rel="noopener noreferrer" className="text-[#2AABEE] hover:text-blue-300 transition-colors">{TG}</a>
+              <a href={MAX_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors">
+                <img src={MAX_LOGO} alt="Макс" className="w-5 h-5 rounded" />
+                Макс
+              </a>
             </div>
           </div>
         </footer>
