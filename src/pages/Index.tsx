@@ -193,6 +193,13 @@ export default function Index() {
               </h1>
 
               <p
+                className="font-oswald text-lg md:text-2xl text-slate-300 uppercase tracking-wide mb-4"
+                style={{ animation: "fade-up 0.6s 0.15s ease-out forwards", opacity: 0 }}
+              >
+                Такси <span className="text-yellow-400">из города в город</span>
+              </p>
+
+              <p
                 className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 max-w-md"
                 style={{ animation: "fade-up 0.6s 0.2s ease-out forwards", opacity: 0 }}
               >
@@ -266,7 +273,7 @@ export default function Index() {
         </section>
 
         {/* ── FEATURES ── */}
-        <section ref={featuresSection.ref} className="py-14 md:py-20 bg-[#0B0F1A]">
+        <section ref={featuresSection.ref} className="py-8 md:py-12 bg-[#0B0F1A]">
           <div className="container mx-auto px-4 md:px-6">
             <div className="text-center mb-10">
               <p className="text-yellow-400 font-oswald text-xs tracking-widest uppercase mb-2">Почему выбирают нас</p>
