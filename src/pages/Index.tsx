@@ -5,8 +5,8 @@ const LOGO_IMG = "https://cdn.poehali.dev/projects/8ba4584c-06d3-4070-96f9-cbe91
 const HERO_IMG = "https://cdn.poehali.dev/projects/8ba4584c-06d3-4070-96f9-cbe91b2e44b2/files/2a308180-7155-40e5-b5b6-65209566764a.jpg";
 const PHONE = "89278978722";
 const PHONE_DISPLAY = "+7 (927) 897-87-22";
-const TG = "@transferorg18";
-const TG_URL = "https://t.me/transferorg18";
+const TG = "@Aricha46";
+const TG_URL = "https://t.me/Aricha46";
 const MAX_URL = "https://max.ru/u/f9LHodD0cOJRttLGXmrsjygaiyV3x1j_lfFDYl57If4t7FEbbsMKkVmh68E";
 const MAX_LOGO = "https://cdn.poehali.dev/projects/8ba4584c-06d3-4070-96f9-cbe91b2e44b2/bucket/5690f815-4254-4066-89c1-aab6e13ce23a.png";
 
@@ -91,97 +91,8 @@ function StarRating({ count }: { count: number }) {
   );
 }
 
-// ─── LOADING SCREEN ───────────────────────────────────────────────────────────
-function LoadingScreen({ onDone }: { onDone: () => void }) {
-  const [progress, setProgress] = useState(0);
-  const [fadeOut, setFadeOut] = useState(false);
-
-  useEffect(() => {
-    const step = setInterval(() => {
-      setProgress(p => {
-        if (p >= 100) {
-          clearInterval(step);
-          setTimeout(() => {
-            setFadeOut(true);
-            setTimeout(onDone, 600);
-          }, 300);
-          return 100;
-        }
-        return p + (p < 70 ? 3 : p < 90 ? 1.5 : 0.8);
-      });
-    }, 40);
-    return () => clearInterval(step);
-  }, [onDone]);
-
-  return (
-    <div
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#0B0F1A]"
-      style={{
-        opacity: fadeOut ? 0 : 1,
-        transition: "opacity 0.6s ease",
-        pointerEvents: fadeOut ? "none" : "all",
-      }}
-    >
-      {/* Road animation behind */}
-      <div className="absolute inset-0 overflow-hidden opacity-10">
-        {[...Array(8)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute bg-yellow-400"
-            style={{
-              height: "2px",
-              width: `${60 + i * 20}px`,
-              top: `${20 + i * 9}%`,
-              left: 0,
-              animation: `speed-line ${1.2 + i * 0.3}s linear infinite`,
-              animationDelay: `${i * 0.2}s`,
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="relative flex flex-col items-center gap-8">
-        {/* Logo */}
-        <div
-          className="w-32 h-32 rounded-2xl overflow-hidden shadow-2xl border-2 border-yellow-400/30"
-          style={{ animation: "fade-up 0.5s ease-out forwards" }}
-        >
-          <img src={LOGO_IMG} alt="Поехали" className="w-full h-full object-cover" />
-        </div>
-
-        {/* Brand */}
-        <div className="text-center" style={{ animation: "fade-up 0.5s 0.15s ease-out forwards", opacity: 0 }}>
-          <h1 className="font-oswald text-5xl font-bold text-white tracking-widest uppercase">
-            ПОЕ<span className="text-yellow-400">ХАЛИ</span>
-          </h1>
-          <p className="text-slate-400 text-sm mt-2 tracking-widest uppercase font-golos">Межгородское такси · с 2018 года</p>
-        </div>
-
-        {/* Progress bar */}
-        <div
-          className="w-64 flex flex-col gap-2"
-          style={{ animation: "fade-up 0.5s 0.3s ease-out forwards", opacity: 0 }}
-        >
-          <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-yellow-400 rounded-full transition-all duration-100"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-          <div className="flex justify-between text-xs text-slate-500 font-golos">
-            <span>Загрузка...</span>
-            <span>{Math.floor(progress)}%</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // ─── MAIN PAGE ────────────────────────────────────────────────────────────────
 export default function Index() {
-  const [loading, setLoading] = useState(true);
-  const [visible, setVisible] = useState(false);
   const [form, setForm] = useState({ from: "", to: "", name: "", phone: "" });
   const [sent, setSent] = useState(false);
 
@@ -190,29 +101,16 @@ export default function Index() {
   const reviewsSection = useInView();
   const contactSection = useInView();
 
-  const handleDone = () => {
-    setLoading(false);
-    setTimeout(() => setVisible(true), 50);
-  };
-
   const handleOrder = (e: React.FormEvent) => { e.preventDefault(); setSent(true); };
 
   return (
     <>
-      {loading && <LoadingScreen onDone={handleDone} />}
-
-      <div
-        className="bg-[#0B0F1A] text-white font-golos min-h-screen overflow-x-hidden"
-        style={{
-          opacity: visible ? 1 : 0,
-          transition: "opacity 0.8s ease",
-        }}
-      >
+      <div className="bg-[#0B0F1A] text-white font-golos min-h-screen overflow-x-hidden">
         {/* ── NAV ── */}
         <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-8 py-3 bg-[#0B0F1A]/90 backdrop-blur-md border-b border-white/5">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl overflow-hidden border border-yellow-400/30">
-              <img src={LOGO_IMG} alt="Поехали" className="w-full h-full object-cover" />
+              <img src={LOGO_IMG} alt="Поехали" className="w-full h-full object-cover" fetchPriority="high" />
             </div>
             <span className="font-oswald text-xl font-bold tracking-widest text-white uppercase">
               ПОЕ<span className="text-yellow-400">ХАЛИ</span>
@@ -241,15 +139,18 @@ export default function Index() {
 
         {/* ── HERO ── */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center scale-105"
-            style={{ backgroundImage: `url(${HERO_IMG})` }}
+          <img
+            src={HERO_IMG}
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover object-center scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F1A] via-[#0B0F1A]/90 to-[#0B0F1A]/60" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-transparent to-transparent" />
 
-          {/* animated road lines */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* animated road lines — desktop only */}
+          <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
             {[...Array(5)].map((_, i) => (
               <div
                 key={i}
