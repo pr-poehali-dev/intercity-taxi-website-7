@@ -166,107 +166,91 @@ export default function Index() {
             ))}
           </div>
 
-          <div className="relative z-10 w-full px-4 md:px-6 pt-24 pb-10">
-            <div className="max-w-xl mx-auto md:mx-0">
-              <div
-                className="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/25 text-yellow-400 text-xs font-medium px-3 py-1.5 rounded-full mb-5 uppercase tracking-widest"
-                style={{ animation: "fade-up 0.5s ease-out forwards", opacity: 0 }}
-              >
-                <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" />
-                С 2018 года · По всей России
-              </div>
+          {/* ── HERO CONTENT ── */}
+          <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-4 pt-20 pb-8" style={{ minHeight: "inherit" }}>
 
-              <div
-                className="inline-block bg-yellow-400 text-[#0B0F1A] font-oswald font-bold text-sm md:text-base px-4 py-2 rounded-xl mb-4 uppercase tracking-wide"
-                style={{ animation: "fade-up 0.5s 0.05s ease-out forwards", opacity: 0 }}
-              >
-                Закажите междугороднее такси
-              </div>
+            {/* Значок сверху */}
+            <div className="inline-flex items-center gap-2 bg-black/40 border border-yellow-400/40 text-yellow-400 text-xs font-medium px-3 py-1.5 rounded-full mb-6 uppercase tracking-widest backdrop-blur-sm">
+              <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse" />
+              С 2018 года · По всей России
+            </div>
 
-              <h1
-                className="font-oswald uppercase leading-tight mb-2"
-                style={{ animation: "fade-up 0.6s 0.1s ease-out forwards", opacity: 0, fontSize: "clamp(2.4rem, 8vw, 5rem)", fontWeight: 700 }}
-              >
-                Такси <span className="text-yellow-400">Поехали</span>
-              </h1>
+            {/* ГЛАВНЫЙ ЗАГОЛОВОК */}
+            <h1 className="font-oswald uppercase text-white leading-[1.05] mb-3 drop-shadow-2xl"
+              style={{ fontSize: "clamp(2.8rem, 11vw, 7rem)", fontWeight: 900, textShadow: "0 4px 24px rgba(0,0,0,0.8)" }}>
+              Заказать такси<br />
+              <span className="text-yellow-400">из города в город</span>
+            </h1>
 
-              <p
-                className="font-oswald uppercase leading-tight mb-4 text-white"
-                style={{ animation: "fade-up 0.6s 0.12s ease-out forwards", opacity: 0, fontSize: "clamp(1.6rem, 5.5vw, 3rem)", fontWeight: 700 }}
-              >
-                из <span className="text-yellow-400">города</span> в <span className="text-yellow-400">город</span>
-              </p>
+            {/* Подзаголовок */}
+            <p className="font-oswald text-white/90 uppercase tracking-widest mb-8 drop-shadow-lg"
+              style={{ fontSize: "clamp(1rem, 3.5vw, 1.6rem)", fontWeight: 600, textShadow: "0 2px 12px rgba(0,0,0,0.9)" }}>
+              от 200 км · По всей России · Новые территории
+            </p>
 
-              <p
-                className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 max-w-md"
-                style={{ animation: "fade-up 0.6s 0.2s ease-out forwards", opacity: 0 }}
-              >
-                Межгородские перевозки по всей России и новым территориям. Удобно, безопасно, по фиксированной цене.
-              </p>
+            {/* Кнопки CTA */}
+            <div className="flex flex-col sm:flex-row gap-3 w-full max-w-lg mb-6">
+              <a href={MAX_URL} target="_blank" rel="noopener noreferrer"
+                className="flex-[1.4] flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-oswald font-bold py-4 rounded-2xl shadow-xl shadow-purple-900/50 active:scale-95 transition-all uppercase tracking-wide"
+                style={{ fontSize: "clamp(1rem, 4vw, 1.2rem)" }}>
+                <img src={MAX_LOGO} alt="Макс" className="w-7 h-7 rounded-lg" />
+                Написать в Макс
+              </a>
+              <a href={`tel:${PHONE}`}
+                className="flex-1 flex items-center justify-center gap-2 bg-yellow-400 text-[#0B0F1A] font-oswald font-bold py-4 rounded-2xl shadow-xl shadow-yellow-400/30 active:scale-95 transition-all uppercase tracking-wide"
+                style={{ fontSize: "clamp(1rem, 4vw, 1.2rem)" }}>
+                <Icon name="Phone" size={20} />
+                Позвонить
+              </a>
+            </div>
 
-              {/* ORDER FORM */}
-              <div
-                className="bg-[#131929]/98 backdrop-blur-sm border border-white/8 rounded-2xl p-4 md:p-6"
-                style={{ animation: "fade-up 0.6s 0.3s ease-out forwards", opacity: 0 }}
-              >
-                <p className="font-oswald text-base font-semibold tracking-wide text-white mb-4 uppercase">Рассчитать поездку</p>
-                {!sent ? (
-                  <form onSubmit={handleOrder} className="space-y-3">
-                    <div className="relative">
-                      <Icon name="MapPin" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
-                      <input type="text" placeholder="Откуда (город)" required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
+            {/* Форма */}
+            <div className="w-full max-w-lg bg-[#0B0F1A]/85 backdrop-blur-md border border-white/10 rounded-2xl p-4">
+              <p className="font-oswald text-sm font-semibold tracking-widest text-yellow-400 mb-3 uppercase">Рассчитать поездку</p>
+              {!sent ? (
+                <form onSubmit={handleOrder} className="flex flex-col gap-2">
+                  <div className="flex gap-2">
+                    <div className="relative flex-1">
+                      <Icon name="MapPin" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
+                      <input type="text" placeholder="Откуда" required
+                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-3 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
                         value={form.from} onChange={e => setForm({ ...form, from: e.target.value })} />
                     </div>
-                    <div className="relative">
-                      <Icon name="Navigation" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
-                      <input type="text" placeholder="Куда (город)" required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
+                    <div className="relative flex-1">
+                      <Icon name="Navigation" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
+                      <input type="text" placeholder="Куда" required
+                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-3 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
                         value={form.to} onChange={e => setForm({ ...form, to: e.target.value })} />
                     </div>
-                    <div className="relative">
-                      <Icon name="User" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
-                      <input type="text" placeholder="Ваше имя" required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="relative flex-1">
+                      <Icon name="User" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
+                      <input type="text" placeholder="Имя" required
+                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-3 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
                         value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
                     </div>
-                    <div className="relative">
-                      <Icon name="Phone" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
+                    <div className="relative flex-1">
+                      <Icon name="Phone" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-yellow-400" />
                       <input type="tel" placeholder="Телефон" required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-9 pr-3 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl pl-8 pr-3 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-yellow-400/40 text-sm transition-colors"
                         value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} />
                     </div>
-                    <button type="submit"
-                      className="w-full bg-yellow-400 text-[#0B0F1A] font-oswald font-bold text-base py-4 rounded-xl hover:bg-yellow-300 active:scale-[0.98] transition-all tracking-wide uppercase">
-                      Узнать стоимость →
-                    </button>
-                  </form>
-                ) : (
-                  <div className="text-center py-6">
-                    <div className="w-14 h-14 bg-yellow-400/15 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Icon name="CheckCircle" size={28} className="text-yellow-400" />
-                    </div>
-                    <p className="font-oswald text-lg font-semibold text-white">Заявка принята!</p>
-                    <p className="text-slate-400 mt-1 text-sm">Перезвоним в течение нескольких минут</p>
                   </div>
-                )}
-              </div>
-
-              {/* quick contact */}
-              <div
-                className="flex flex-wrap gap-4 mt-4"
-                style={{ animation: "fade-up 0.6s 0.4s ease-out forwards", opacity: 0 }}
-              >
-                <a href={`tel:${PHONE}`}
-                  className="flex items-center gap-2 text-yellow-400 font-medium text-sm hover:text-yellow-300 transition-colors">
-                  <Icon name="Phone" size={14} /> {PHONE_DISPLAY}
-                </a>
-                <a href={TG_URL} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-[#2AABEE] text-sm hover:text-blue-300 transition-colors">
-                  <Icon name="Send" size={14} /> {TG}
-                </a>
-              </div>
+                  <button type="submit"
+                    className="w-full bg-yellow-400 text-[#0B0F1A] font-oswald font-bold text-base py-3.5 rounded-xl hover:bg-yellow-300 active:scale-[0.98] transition-all tracking-wide uppercase">
+                    Узнать стоимость →
+                  </button>
+                </form>
+              ) : (
+                <div className="text-center py-4">
+                  <Icon name="CheckCircle" size={32} className="text-yellow-400 mx-auto mb-2" />
+                  <p className="font-oswald text-lg font-semibold text-white">Заявка принята!</p>
+                  <p className="text-slate-400 mt-1 text-sm">Перезвоним в течение нескольких минут</p>
+                </div>
+              )}
             </div>
+
           </div>
         </section>
 
