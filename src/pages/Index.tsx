@@ -138,7 +138,7 @@ export default function Index() {
         </nav>
 
         {/* ── HERO ── */}
-        <section className="relative min-h-screen flex items-center overflow-hidden">
+        <section className="relative flex items-center overflow-hidden" style={{ minHeight: "92svh" }}>
           <img
             src={HERO_IMG}
             alt=""
@@ -184,19 +184,17 @@ export default function Index() {
               </div>
 
               <h1
-                className="font-oswald uppercase leading-tight mb-4"
+                className="font-oswald uppercase leading-tight mb-2"
                 style={{ animation: "fade-up 0.6s 0.1s ease-out forwards", opacity: 0, fontSize: "clamp(2.4rem, 8vw, 5rem)", fontWeight: 700 }}
               >
-                Такси<br />
-                <span className="text-yellow-400">Поехали</span><br />
-                <span style={{ fontSize: "clamp(1.4rem, 5vw, 2.5rem)" }} className="font-semibold text-slate-300">в другой город</span>
+                Такси <span className="text-yellow-400">Поехали</span>
               </h1>
 
               <p
-                className="font-oswald text-lg md:text-2xl text-slate-300 uppercase tracking-wide mb-4"
-                style={{ animation: "fade-up 0.6s 0.15s ease-out forwards", opacity: 0 }}
+                className="font-oswald uppercase leading-tight mb-4 text-white"
+                style={{ animation: "fade-up 0.6s 0.12s ease-out forwards", opacity: 0, fontSize: "clamp(1.6rem, 5.5vw, 3rem)", fontWeight: 700 }}
               >
-                Такси <span className="text-yellow-400">из города в город</span>
+                из <span className="text-yellow-400">города</span> в <span className="text-yellow-400">город</span>
               </p>
 
               <p
@@ -415,6 +413,23 @@ export default function Index() {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                <a href={MAX_URL} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-4 p-5 bg-gradient-to-r from-blue-900/40 to-purple-900/40 rounded-2xl border border-purple-500/30 hover:border-purple-400/60 active:scale-[0.98] group transition-all sm:col-span-2">
+                  <div className="w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
+                    <img src={MAX_LOGO} alt="Макс" className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <p className="text-purple-300 text-xs mb-0.5 uppercase tracking-wide font-medium">Основной канал связи</p>
+                    <p className="font-oswald font-bold text-xl text-white leading-tight">Написать в Макс</p>
+                    <p className="text-slate-400 text-sm mt-0.5">Отвечаем быстро · Мессенджер Макс</p>
+                  </div>
+                  <div className="ml-auto">
+                    <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-oswald font-bold text-sm px-4 py-2 rounded-xl uppercase">
+                      Написать →
+                    </div>
+                  </div>
+                </a>
+
                 <a href={`tel:${PHONE}`}
                   className="flex items-center gap-4 p-5 bg-[#131929] rounded-2xl border border-white/5 hover:border-yellow-400/30 active:scale-[0.98] group transition-all">
                   <div className="w-14 h-14 bg-yellow-400 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
@@ -439,18 +454,6 @@ export default function Index() {
                   </div>
                 </a>
 
-                <a href={MAX_URL} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-5 bg-[#131929] rounded-2xl border border-white/5 hover:border-purple-500/30 active:scale-[0.98] group transition-all">
-                  <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
-                    <img src={MAX_LOGO} alt="Макс" className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <p className="text-slate-500 text-xs mb-0.5">Написать</p>
-                    <p className="font-oswald font-semibold text-lg text-white leading-tight">Макс</p>
-                    <p className="text-slate-500 text-xs mt-0.5">Мессенджер Макс</p>
-                  </div>
-                </a>
-
                 <div className="flex items-center gap-4 p-5 bg-[#131929] rounded-2xl border border-white/5 sm:col-span-2">
                   <div className="w-14 h-14 bg-yellow-400/10 rounded-xl flex items-center justify-center flex-shrink-0">
                     <Icon name="Clock" size={26} className="text-yellow-400" />
@@ -464,22 +467,24 @@ export default function Index() {
               </div>
 
               {/* big CTA buttons mobile-friendly */}
-              <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mt-6">
-                <a href={`tel:${PHONE}`}
-                  className="flex-1 flex items-center justify-center gap-3 bg-yellow-400 text-[#0B0F1A] font-oswald font-bold text-lg py-4 rounded-2xl hover:bg-yellow-300 active:scale-[0.98] transition-all tracking-wide uppercase">
-                  <Icon name="Phone" size={20} />
-                  Позвонить сейчас
-                </a>
-                <a href={TG_URL} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-3 bg-[#2AABEE] text-white font-oswald font-bold text-lg py-4 rounded-2xl hover:bg-blue-400 active:scale-[0.98] transition-all tracking-wide uppercase">
-                  <Icon name="Send" size={20} />
-                  Telegram
-                </a>
+              <div className="flex flex-col gap-3 max-w-2xl mx-auto mt-6">
                 <a href={MAX_URL} target="_blank" rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-3 bg-white/10 text-white font-oswald font-bold text-lg py-4 rounded-2xl hover:bg-white/15 active:scale-[0.98] transition-all tracking-wide uppercase border border-white/10">
-                  <img src={MAX_LOGO} alt="Макс" className="w-6 h-6 rounded-md" />
-                  Макс
+                  className="flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-oswald font-bold text-xl py-5 rounded-2xl hover:opacity-90 active:scale-[0.98] transition-all tracking-wide uppercase shadow-lg shadow-purple-500/20">
+                  <img src={MAX_LOGO} alt="Макс" className="w-7 h-7 rounded-lg" />
+                  Написать в Макс
                 </a>
+                <div className="flex gap-3">
+                  <a href={`tel:${PHONE}`}
+                    className="flex-1 flex items-center justify-center gap-3 bg-yellow-400 text-[#0B0F1A] font-oswald font-bold text-lg py-4 rounded-2xl hover:bg-yellow-300 active:scale-[0.98] transition-all tracking-wide uppercase">
+                    <Icon name="Phone" size={20} />
+                    Позвонить
+                  </a>
+                  <a href={TG_URL} target="_blank" rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-3 bg-[#2AABEE] text-white font-oswald font-bold text-lg py-4 rounded-2xl hover:bg-blue-400 active:scale-[0.98] transition-all tracking-wide uppercase">
+                    <Icon name="Send" size={20} />
+                    Telegram
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -492,10 +497,10 @@ export default function Index() {
             <Icon name="Phone" size={20} />
             Позвонить
           </a>
-          <a href={TG_URL} target="_blank" rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 bg-[#2AABEE] text-white font-oswald font-bold text-base py-4 rounded-2xl shadow-lg shadow-blue-400/20 active:scale-95 transition-all">
-            <Icon name="Send" size={20} />
-            Telegram
+          <a href={MAX_URL} target="_blank" rel="noopener noreferrer"
+            className="flex-[1.3] flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-oswald font-bold text-base py-4 rounded-2xl shadow-lg shadow-purple-500/30 active:scale-95 transition-all">
+            <img src={MAX_LOGO} alt="Макс" className="w-6 h-6 rounded-md" />
+            Написать в Макс
           </a>
         </div>
 
